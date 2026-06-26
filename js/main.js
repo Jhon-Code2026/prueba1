@@ -2,8 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Smooth Scroll for Navigation Links
-    document.querySelectorAll('.nav-links a').forEach(anchor => {
+    // Smooth Scroll for Navigation and CTA Links
+    document.querySelectorAll('.nav-links a, a.cta-button[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
@@ -51,26 +51,24 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // Form Submission Handling (Mockup)
+    // Form Submission Handling
     const contactForm = document.querySelector('.contact-form');
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    
+    // Add _next dynamically to redirect back to the page after submission (only if hosted on server)
+    if (window.location.protocol !== 'file:') {
+        const nextInput = document.createElement('input');
+        nextInput.type = 'hidden';
+        nextInput.name = '_next';
+        nextInput.value = window.location.href;
+        contactForm.appendChild(nextInput);
+    }
+
+    contactForm.addEventListener('submit', () => {
         const btn = contactForm.querySelector('button');
-        const originalText = btn.innerText;
-        
-        btn.innerText = '¡Enviado!';
+        btn.innerText = 'Enviando...';
         btn.style.background = 'var(--neon-pink)';
         btn.style.borderColor = 'var(--neon-pink)';
         btn.style.boxShadow = '0 0 20px var(--neon-pink)';
-        
-        contactForm.reset();
-        
-        setTimeout(() => {
-            btn.innerText = originalText;
-            btn.style.background = 'transparent';
-            btn.style.borderColor = 'var(--neon-cyan)';
-            btn.style.boxShadow = '0 0 10px rgba(0, 243, 255, 0.2)';
-        }, 3000);
     });
 
 });

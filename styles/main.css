@@ -135,6 +135,8 @@ header {
 }
 
 .cta-button {
+    display: inline-block;
+    text-decoration: none;
     padding: 1rem 2.5rem;
     font-size: 1rem;
     font-weight: 600;
