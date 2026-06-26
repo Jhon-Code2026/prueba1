@@ -361,3 +361,45 @@ input:focus, textarea:focus {
 .sim-details p:last-child {
     margin-bottom: 0;
 }
+
+/* Surrealist Futuristic Watermark */
+.watermark {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    font-family: var(--font-main);
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: rgba(255, 255, 255, 0.25);
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 9999;
+    user-select: none;
+    transform: rotate(-90deg) translateY(10px) skewX(-10deg);
+    transform-origin: bottom right;
+    mix-blend-mode: overlay;
+    text-shadow: 
+        -1px -1px 0 rgba(0, 243, 255, 0.6),  /* Sombra Neón Cian */
+        1px 1px 0 rgba(255, 0, 127, 0.6);   /* Sombra Neón Rosa */
+    animation: watermark-glitch 4s infinite steps(1);
+}
+
+@keyframes watermark-glitch {
+    0%, 95%, 98% {
+        text-shadow: -1px -1px 0 rgba(0, 243, 255, 0.4), 1px 1px 0 rgba(255, 0, 127, 0.4);
+        transform: rotate(-90deg) translateY(10px) skewX(-10deg);
+    }
+    96% {
+        text-shadow: -3px 2px 0 rgba(0, 243, 255, 0.8), 3px -2px 0 rgba(255, 0, 127, 0.8);
+        transform: rotate(-90deg) translateY(10px) skewX(-20deg) scaleY(1.1);
+    }
+    97% {
+        text-shadow: 2px -3px 0 rgba(0, 243, 255, 0.8), -2px 3px 0 rgba(255, 0, 127, 0.8);
+        transform: rotate(-90deg) translateY(12px) skewX(15deg);
+    }
+    99% {
+        text-shadow: -1px -1px 0 rgba(0, 243, 255, 0.4), 1px 1px 0 rgba(255, 0, 127, 0.4);
+        transform: rotate(-90deg) translateY(8px) skewX(-5deg);
+    }
+}
