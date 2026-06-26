@@ -113,6 +113,22 @@
         <p>&copy; 2026 Lumina Neon. Todos los derechos reservados. Brillo con Pasión.</p>
     </footer>
 
+    <!-- Modal de Simulación para Protocolo Local (file://) -->
+    <div id="sim-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <i class="fa-solid fa-circle-info" style="font-size: 3rem; color: var(--neon-cyan); margin-bottom: 1.5rem; text-shadow: 0 0 10px var(--neon-cyan);"></i>
+            <h3>Simulación de Envío (Entorno Local)</h3>
+            <p style="margin-bottom: 1rem;">FormSubmit.co bloquea envíos reales desde archivos locales directos (<code>file://</code>) por seguridad del navegador.</p>
+            <div class="sim-details">
+                <p><strong>Destinatario:</strong> beazjhons@gmail.com</p>
+                <p><strong>Mensaje automático al cliente:</strong> "Gracias por compartirnos su idea para su proyecto. Pronto nos estaremos comunicandones con usted"</p>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 1rem;">Para enviar correos reales, abre el proyecto usando un servidor web local o súbelo a un hosting (Netlify, GitHub Pages, Vercel, etc.).</p>
+            <button class="cta-button close-modal-btn" style="margin-top: 1.5rem; width: 100%;">Entendido</button>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
 </body>
 </html>

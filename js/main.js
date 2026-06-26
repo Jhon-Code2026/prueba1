@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Form Submission Handling
     const contactForm = document.querySelector('.contact-form');
+    const simModal = document.getElementById('sim-modal');
     
     // Add _next dynamically to redirect back to the page after submission (only if hosted on server)
     if (window.location.protocol !== 'file:') {
@@ -63,12 +64,43 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.appendChild(nextInput);
     }
 
-    contactForm.addEventListener('submit', () => {
-        const btn = contactForm.querySelector('button');
-        btn.innerText = 'Enviando...';
-        btn.style.background = 'var(--neon-pink)';
-        btn.style.borderColor = 'var(--neon-pink)';
-        btn.style.boxShadow = '0 0 20px var(--neon-pink)';
+    contactForm.addEventListener('submit', (e) => {
+        if (window.location.protocol === 'file:') {
+            // Prevent actual form submission to FormSubmit.co
+            e.preventDefault();
+            
+            // Show modal simulating the success
+            simModal.style.display = 'flex';
+            
+            // Reset form
+            contactForm.reset();
+        } else {
+            // Standard submission: show sending animation
+            const btn = contactForm.querySelector('button');
+            btn.innerText = 'Enviando...';
+            btn.style.background = 'var(--neon-pink)';
+            btn.style.borderColor = 'var(--neon-pink)';
+            btn.style.boxShadow = '0 0 20px var(--neon-pink)';
+        }
     });
+
+    // Close Modal Event Listeners
+    if (simModal) {
+        const closeBtn = simModal.querySelector('.close-modal');
+        const closeBtn2 = simModal.querySelector('.close-modal-btn');
+        
+        const hideModal = () => {
+            simModal.style.display = 'none';
+        };
+
+        closeBtn.addEventListener('click', hideModal);
+        closeBtn2.addEventListener('click', hideModal);
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === simModal) {
+                hideModal();
+            }
+        });
+    }
 
 });
